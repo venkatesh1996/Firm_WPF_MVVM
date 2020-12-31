@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="MvvmDemoRemastered.Views.EmployeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MvvmDemoRemastered.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Label Foreground="White" FontSize="20" Margin="300,15,200,15" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Employee Management"/>
+        <Label Foreground="White" Margin="50,0,50,0" FontSize="15" Padding="15" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Content="Enter Id"/>
+        <Label Foreground="White" Margin="50,0,50,0" FontSize="15" Padding="15" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Content="Enter Name"/>
+        <Label Foreground="White" Margin="50,0,50,0" FontSize="15" Padding="15" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Content="Enter Age"/>
+        <TextBox Foreground="White" Background="Black" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="150,15,150,15" Grid.Row="1" Grid.Column="1" Name="txtId" Text="{Binding Path=CurrentEmployee.Id,Mode=TwoWay}" />
+        <TextBox Foreground="White" Background="Black" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="150,15,150,15" Grid.Row="2" Grid.Column="1" Name="txtName" Text="{Binding Path=CurrentEmployee.Name,Mode=TwoWay}"/>
+        <TextBox Foreground="White" Background="Black" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="150,15,150,15" Grid.Row="3" Grid.Column="1" Name="txtAge" Text="{Binding Path=CurrentEmployee.Age,Mode=TwoWay}" />
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1">
+            <Button Name="btnAdd"  Foreground="White" Background="Black" Padding="10" HorizontalAlignment="Center" Margin="120,10,0,10" Content="ADD" Command="{Binding Path=SaveCommand}" />
+            <Button Name="btnSearch"  Foreground="White" Background="Black" Padding="10" Margin="40,10,0,10" Content="SEARCH" Command="{Binding Path=SearchCommand}"/>
+            <Button Name="btnUpdate"  Foreground="White" Background="Black" Padding="10" Margin="40,10,0,10" Content="UPDATE" Command="{Binding Path=UpdateCommand}"/>
+            <Button Name="btnDelete"  Foreground="White" Background="Black" Padding="10" Margin="40,10,0,10" Content="DELETE" Command="{Binding Path=DeleteCommand}"/>
+        </StackPanel>
+        <TextBlock Name="txtBlockMessage" Foreground="White" HorizontalAlignment="Center"  Grid.Row="5" Grid.Column="1" Text="{Binding Path=Message}"/>
+        <DataGrid Grid.Row="6" Padding="10" Margin="0,0,0,10" AutoGenerateColumns="False" Foreground="Red" Grid.Column="1" ItemsSource="{Binding Path=EmployeesList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn   Header="Employee Id" Binding="{Binding Path=Id}" ></DataGridTextColumn>
+                <DataGridTextColumn   Header="Employee Name" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <DataGridTextColumn   Header="Employee Age" Binding="{Binding Path=Age}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>
